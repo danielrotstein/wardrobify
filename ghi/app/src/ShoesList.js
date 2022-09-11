@@ -55,7 +55,7 @@ function ShoesList(props) {
                 </tbody>
             </table>
             <div className="d-grid gap-2 d-sm-flex justify-content-sm-end">
-              <Link to="/shoes/new" className="btn btn-outline-info btn-lg px-4 gap-3">Create new shoe</Link>
+              <Link to="/shoes/new" className="btn btn btn-warning btn-lg px-4 gap-3">Create new shoe</Link>
             </div>
         </div>
     )

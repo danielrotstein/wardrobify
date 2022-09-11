@@ -122,7 +122,7 @@ class HatsFrom extends React.Component {
 
                     </select>
                   </div>
-                  <button className="btn btn-primary">Create</button>
+                  <button className="btn btn-warning">Create</button>
                 </form>
               </div>
             </div>

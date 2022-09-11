@@ -55,7 +55,7 @@ function HatsList(props) {
                 </tbody>
             </table>
             <div className="d-grid gap-2 d-sm-flex justify-content-sm-end">
-              <Link to="/hats/new" className="btn btn-outline-info btn-lg px-4 gap-3">Create new hat</Link>
+              <Link to="/hats/new" className="btn btn-warning btn-lg px-4 gap-3">Create new hat</Link>
             </div>
         </div>
     )
