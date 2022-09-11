@@ -13,13 +13,13 @@ root.render(
 
 async function loadShoesAndHats() {
   const shoeResponse = await fetch('http://localhost:8080/api/shoes/');
-  // const hatResponse = await fetch('http://localhost:8090/api/hats/');
+  const hatResponse = await fetch('http://localhost:8090/api/hats/');
 
-  if(shoeResponse.ok) {
+  if(shoeResponse.ok && hatResponse.ok) {
     const shoeData = await shoeResponse.json();
-    // const hatData = await hatResponse.json();
+    const hatData = await hatResponse.json();
     root.render(
-        <App shoes={shoeData.shoes} />
+        <App shoes={shoeData.shoes} hats={hatData.hats} />
     );
   }
   else {
