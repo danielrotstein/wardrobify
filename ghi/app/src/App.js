@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HatsList from './HatsList';
 import HatsFrom from './HatsForm';
 
+import Footer from './Footer';
 
 import MainPage from './MainPage';
 import Nav from './Nav';
@@ -37,7 +38,9 @@ if (props.shoes === undefined) {
 
         </Routes>
       </div>
+      <Footer/>
     </BrowserRouter>
+    
   );
 }
 
