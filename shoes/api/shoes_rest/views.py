@@ -22,16 +22,12 @@ import json
 
 
 
-
-
 class BinVOEncoder(ModelEncoder):
     model = BinVO
     properties = [ 
         "import_href",
         "closet_name"
     ]
-
-
 
 
 
@@ -50,8 +46,6 @@ class ShoeDetailEncoder(ModelEncoder):
 
 
 
-
-
 class ShoeListEncoder(ModelEncoder):
     model = Shoe
     properties = [ 
@@ -60,8 +54,6 @@ class ShoeListEncoder(ModelEncoder):
     ]
     def get_extra_data(self, o):
         return {"bin": o.bin.closet_name}
-
-
 
 
 
@@ -96,6 +88,41 @@ def api_list_shoes(requests, bin_vo_id=None):
         shoes = Shoe.objects.create(**content)
         return JsonResponse( 
             shoes,
+            encoder=ShoeDetailEncoder,
+            safe=False,
+        )
+
+
+
+@require_http_methods({"GET", "DELETE", "PUT"})
+def api_show_shoe(requests, pk):
+    if requests.method == "GET":
+        try:
+            shoe = Shoe.objects.get(id=pk)
+            return JsonResponse(
+                shoe,
+                encoder=ShoeDetailEncoder,
+                safe=False,
+            )
+        
+        except Shoe.DoesNotExist:
+            return JsonResponse(
+                {"message": "invalid shoe id"},
+                status=400,
+            )
+        
+    elif requests.method == "DELETE":
+        count, _ = Shoe.objects.filter(id=pk).delete()
+        return JsonResponse(
+            {"deleted amigo!": count > 0}
+        )
+    
+    else:
+        content = json.loads(requests.body)
+        Shoe.objects.filter(id=pk).update(**content)
+        shoe = Shoe.objects.get(id=pk)
+        return JsonResponse(
+            shoe,
             encoder=ShoeDetailEncoder,
             safe=False,
         )
