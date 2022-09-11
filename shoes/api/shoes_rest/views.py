@@ -49,7 +49,10 @@ class ShoeDetailEncoder(ModelEncoder):
 class ShoeListEncoder(ModelEncoder):
     model = Shoe
     properties = [ 
+        "manufacturer",
         "model_name",
+        "color",
+        "picture_url",
         "id",
     ]
     def get_extra_data(self, o):
