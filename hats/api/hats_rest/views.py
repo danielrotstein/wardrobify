@@ -98,6 +98,38 @@ def api_list_hats(request, location_vo_id=None):
         )
     
             
+@require_http_methods({"GET", "PUT", "DELETE"})
+def api_show_hat(request, pk):
+    if request.method == "GET":
+        try:
+            hat = Hat.objects.get(id=pk)
+            return JsonResponse(
+                hat,
+                encoder=HatsDetailEncoder,
+                safe=False,
+            )
+
+        except Hat.DoesNotExist:
+            return JsonResponse(
+                {"message": "Invalid hat id"},
+                status=400,
+            )
+        
+    elif request.method == "DELETE":
+        count, _ = Hat.objects.filter(id=pk).delete()
+        return JsonResponse(
+            {"deleted hijo!": count > 0}
+        )
+    
+    else:
+        content = json.loads(request.body)
+        Hat.objects.filter(id=pk).update(**content)
+        hat = Hat.objects.get(id=pk)
+        return JsonResponse(
+            hat,
+            encoder=HatsDetailEncoder,
+            safe=False,
+        )
 
 
 
