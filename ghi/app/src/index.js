@@ -9,8 +9,6 @@ root.render(
   </React.StrictMode>
 );
 
-
-
 async function loadShoesAndHats() {
   const shoeResponse = await fetch('http://localhost:8080/api/shoes/');
   const hatResponse = await fetch('http://localhost:8090/api/hats/');
