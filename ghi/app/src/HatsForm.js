@@ -38,7 +38,6 @@ class HatsFrom extends React.Component {
                 location: "",
             };
             this.setState(cleared);
-            // window.location.reload(false);
             window.location.href="/hats"
         }
     }
