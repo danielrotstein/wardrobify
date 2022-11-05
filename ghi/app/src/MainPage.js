@@ -12,12 +12,10 @@ function MainPage() {
         </p>
       </div>
       <div className="row justify-content-evenly">
-
         <div className="col-6 col-sm-4 shadow p-3 mb-5 bg-dark rounded">
           <Link to="/shoes">
             <img src="/shoes.jpg" className="img-fluid" alt="shoesImage"/>
           </Link>
-
         </div>
         <div className="col-6 col-sm-4 shadow p-3 mb-5  bg-dark rounded">
           <Link to="/hats">
@@ -26,7 +24,6 @@ function MainPage() {
         </div>
       </div>
     </div>
-    
   );
 }
 
