@@ -13,7 +13,6 @@ function HatsList(props) {
 
         const response = await fetch(url, fetchConfig);
         if (response.ok) {
-            console.log(response)
             window.location.reload(false);
         }
     }
