@@ -1,6 +1,4 @@
 from django.urls import path
-
-
 from shoes_rest.views import api_list_shoes, api_show_shoe
 
 
