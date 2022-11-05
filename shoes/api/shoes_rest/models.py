@@ -1,8 +1,5 @@
 from django.db import models
-
-# reverse
 from django.urls import reverse
-
 
 
 class BinVO(models.Model):
@@ -15,15 +12,11 @@ class BinVO(models.Model):
         return self.closet_name
 
 
-
-
-
 class Shoe(models.Model):
     manufacturer = models.CharField(max_length=50)
     model_name = models.CharField(max_length=50)
     color = models.CharField(max_length=50)
     picture_url = models.URLField(null=True, blank=True)
-
     bin = models.ForeignKey(
         BinVO,
         related_name="bins",
