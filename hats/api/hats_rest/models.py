@@ -1,9 +1,5 @@
 from django.db import models
-
-# reverse
 from django.urls import reverse
-
-
 
 
 class LocationVO(models.Model):
@@ -16,14 +12,11 @@ class LocationVO(models.Model):
         return self.closet_name
 
 
-
-
 class Hat(models.Model):
     fabric = models.CharField(max_length=50)
     style_name = models.CharField(max_length=50)
     color = models.CharField(max_length=50)
     picture_url = models.URLField(null=True, blank=True)
-
     location = models.ForeignKey(
         LocationVO,
         related_name="locations",
@@ -35,5 +28,3 @@ class Hat(models.Model):
 
     def get_api_url(self):
         return reverse("api_show_hat", kwargs={"pk": self.pk})
-
-
