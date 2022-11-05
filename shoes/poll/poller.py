@@ -9,7 +9,8 @@ sys.path.append("")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "shoes_project.settings")
 django.setup()
 
-# Import models from hats_rest, here.
+# Import models from shoes_rest, here.
+# from shoes_rest.models import Something
 
 from shoes_rest.models import BinVO
 
@@ -17,7 +18,7 @@ from shoes_rest.models import BinVO
 def get_bins():
     response = requests.get("http://wardrobe-api:8000/api/bins/")
     content = json.loads(response.content)
-    print(" <<< HOPP YB >>> ")
+    print("<<<Shoes>>>")
     for bin in content["bins"]:
         BinVO.objects.update_or_create(
             import_href=bin["href"],
@@ -25,7 +26,6 @@ def get_bins():
                 "closet_name": bin["closet_name"],
             }
         )
-
 
 
 def poll():
