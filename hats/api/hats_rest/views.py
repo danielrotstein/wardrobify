@@ -1,37 +1,16 @@
-from django.shortcuts import render
-
-
-# Hat, LocationVO
 from .models import Hat, LocationVO
-
-
-# require_http_methods
-from django.views.decorators.http import require_http_methods\
-
-
-# JSONResponse
+from django.views.decorators.http import require_http_methods
 from django.http import JsonResponse
-
-
-# ModelEncoder
 from common.json import ModelEncoder
-
-# json
 import json
-
-
-
 
 
 class LocationVOEncoder(ModelEncoder):
     model = LocationVO
-    properties = [ 
+    properties = [
         "import_href",
         "closet_name",
     ]
-
-
-
 
 
 class HatsDetailEncoder(ModelEncoder):
@@ -43,17 +22,14 @@ class HatsDetailEncoder(ModelEncoder):
         "picture_url",
         "location",
     ]
-
     encoders = {
         "location": LocationVOEncoder(),
     }
 
 
-
-
 class HatsListEncoder(ModelEncoder):
     model = Hat
-    properties = [ 
+    properties = [
         "fabric",
         "style_name",
         "color",
@@ -65,7 +41,6 @@ class HatsListEncoder(ModelEncoder):
         return {"location": o.location.closet_name}
 
 
-
 @require_http_methods({"GET", "POST"})
 def api_list_hats(request, location_vo_id=None):
     if request.method == "GET":
@@ -73,15 +48,12 @@ def api_list_hats(request, location_vo_id=None):
             hat = Hat.objects.filter(location=location_vo_id)
         else:
             hat = Hat.objects.all()
-        
         return JsonResponse(
             {"hats": hat},
             encoder=HatsListEncoder,
         )
-    
     else:
         content = json.loads(request.body)
-
         try:
             location_href = content["location"]
             location = LocationVO.objects.get(import_href=location_href)
@@ -92,15 +64,14 @@ def api_list_hats(request, location_vo_id=None):
                 {"message": "Inavlid location id"},
                 status=400,
             )
-
         hats = Hat.objects.create(**content)
         return JsonResponse(
             hats,
             encoder=HatsDetailEncoder,
             safe=False,
         )
-    
-            
+
+
 @require_http_methods({"GET", "PUT", "DELETE"})
 def api_show_hat(request, pk):
     if request.method == "GET":
@@ -111,19 +82,16 @@ def api_show_hat(request, pk):
                 encoder=HatsDetailEncoder,
                 safe=False,
             )
-
         except Hat.DoesNotExist:
             return JsonResponse(
                 {"message": "Invalid hat id"},
                 status=400,
             )
-        
     elif request.method == "DELETE":
         count, _ = Hat.objects.filter(id=pk).delete()
         return JsonResponse(
             {"deleted hijo!": count > 0}
         )
-    
     else:
         content = json.loads(request.body)
         Hat.objects.filter(id=pk).update(**content)
@@ -133,8 +101,3 @@ def api_show_hat(request, pk):
             encoder=HatsDetailEncoder,
             safe=False,
         )
-
-
-
-
-
