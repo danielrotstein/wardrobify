@@ -1,21 +1,17 @@
 import { Link } from 'react-router-dom';
 
 
-
 function HatsList(props) {
     const deleteHat = async (href) => {
         const url = `http://localhost:8090/${href}`;
-
         const fetchConfig = {
             method: "delete",
-            // body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json',
             },
         };
 
         const response = await fetch(url, fetchConfig);
-
         if (response.ok) {
             console.log(response)
             window.location.reload(false);
@@ -27,7 +23,7 @@ function HatsList(props) {
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th>Style Name</th>
+                        <th>Style</th>
                         <th>Fabric</th>
                         <th>Color</th>
                         <th>Picture</th>
@@ -55,7 +51,7 @@ function HatsList(props) {
                 </tbody>
             </table>
             <div className="d-grid gap-2 d-sm-flex justify-content-sm-end">
-              <Link to="/hats/new" className="btn btn-warning btn-lg px-4 gap-3">Create new hat</Link>
+              <Link to="/hats/new" className="btn btn-warning btn-lg px-4 gap-3">Add New Hat</Link>
             </div>
         </div>
     )
