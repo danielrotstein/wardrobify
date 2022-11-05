@@ -1,5 +1,4 @@
 from hats_rest.views import api_list_hats, api_show_hat
-
 from django.urls import path
 
 
