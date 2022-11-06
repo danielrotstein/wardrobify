@@ -20,6 +20,6 @@ To fully enjoy Wardrobify! on your local machine, please make sure to follow the
 
 1. Clone the repository down to your local machine
 2. CD into the new project directory
-3. Run docker volume create pgdata
-4. Run docker compose build
-5. Run docker compose up
+3. Run `docker volume create pgdata`
+4. Run `docker compose build`
+5. Run `docker compose up`
