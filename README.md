@@ -14,7 +14,7 @@ Wardrobify! has been created for people who have trouble remembering what items 
 Maintain your closet by adding in your clothing items and keep track of where it's located. Whether you have a large or small wardrobe, you'll never have to worry about forgetting anything!
 
 
-## Installation & Setup
+## Installation and Setup
 
 To fully enjoy Wardrobify! on your local machine, please make sure to follow these steps:
 
